@@ -1,0 +1,217 @@
+import java.util.ArrayList;
+import java.text.DecimalFormat;
+/**
+* Begin public class EllipsoidList.
+*/
+
+public class EllipsoidList {
+
+   private String list;
+   private ArrayList<Ellipsoid> ellipsoidList;
+   
+   /**
+   *
+   * Ellipsoid list objects.
+   * @param listIn for label.
+   * @param ellipsoidListIn for ellipsoidlist.
+   */
+   
+   
+   public void ellipsoidList(String listIn, ArrayList<Ellipsoid>
+               ellipsoidListIn) {
+    
+      list = listIn;
+      
+      ellipsoidList = new ArrayList<Ellipsoid>();
+      
+      for (Ellipsoid e: ellipsoidListIn) {
+       
+         ellipsoidList.add(e);
+             
+      }
+      
+   }
+   
+  /**
+  * Returns string getName.
+  * @return list.
+  */
+      
+   public String getName() {
+      
+      return list;
+          
+   }
+   
+   /**
+   * Returns the size of Ellipsoids.
+   * @return ellipsoidList.size.
+   *
+   */
+      
+   public int numberOfEllipsoids() {
+    
+      return ellipsoidList.size();
+     
+   }
+   
+  /**
+  * Double for totalVolume and returns total.
+  *
+  * @return totalVolume.
+  */
+     
+   public double totalVolume() {
+    
+      double total = 0;
+       
+      for (Ellipsoid e: ellipsoidList) {
+       
+         if (e != null) {
+            total += (e.volume());
+           
+         }
+           
+      }
+      
+      return total;
+     
+   }
+   
+   /**
+   * Double for totalSurfaceArea returns total.
+   *
+   * @return total.
+   */
+   
+   public double totalSurfaceArea() {
+   
+      double total = 0;
+      
+      for (Ellipsoid e: ellipsoidList) {
+       
+         if (e != null) {
+         
+            total += (e.surfaceArea());
+            
+         }
+            
+      }
+         
+      return total;
+      
+   }
+   
+   /**
+   * Returns the averageVolume.
+   * @return averageVolume.
+   *
+   */
+    
+   public double averageVolume() {
+   
+      if (this.numberOfEllipsoids() == 0) {
+        
+         return 0;
+              
+      }
+           
+      else {
+        
+         return this.totalVolume() / this.numberOfEllipsoids();
+           
+      }
+         
+   }
+   
+   /**
+   * Returns averageSurfaceArea.
+   *
+   * @return total surface area over number of Ellipsoid.
+   */
+         
+   public double averageSurfaceArea() {
+     
+      if (this.numberOfEllipsoids() == 0) {
+             
+         return 0;
+         
+      }
+            
+      else {
+         
+         return this.totalSurfaceArea() / this.numberOfEllipsoids();
+             
+      }
+        
+      
+   }
+   
+ /**
+ * Returns the result of the toString.
+ *
+ * @return result.
+ */
+   
+   public String toString() {
+   
+      String result = getName() + "\n";
+      int index = 0;
+      while (index < ellipsoidList.size()) {
+      
+         result += "\n" + ellipsoidList.get(index) + "\n";
+         index++;
+            
+      }
+            
+      return result;
+         
+   }  
+   
+   /**
+   * Returns the summary info.
+   * Creates DecimalFormat.
+   * @return result.
+   *
+   */
+            
+   public String summaryInfo() {
+      
+      DecimalFormat df = new DecimalFormat("#,##0.0###");
+      
+      String result = "";
+      result += "\n";
+      result += "---- Summary for " + getName() + "----";
+      result += "\nNumber of Ellipsoid Objects: " + numberOfEllipsoids();
+      result += "\nTotal Volume: " + df.format(totalVolume()) + " cubic units";
+      result += "\nTotal Surface Area: " + df.format(totalSurfaceArea()) 
+                                         + "square units";
+      result += "\nAverage Volume: " + df.format(averageVolume()) 
+                                     + " cubic units";
+      result += "\nAverage Surface Area: " + df.format(averageSurfaceArea()) 
+                                     + " square units";
+                                     
+      return result;
+      
+   }    
+   
+   /**
+   * Gets the list and returns ellipsoidList.
+   * @return elliposoidList.
+   *
+   */
+      
+   public ArrayList<Ellipsoid> getList() {
+         
+      return ellipsoidList;
+   
+   }
+
+     
+      
+}
+      
+ 
+ 
+    
+  
