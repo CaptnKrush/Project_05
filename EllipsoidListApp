@@ -1,0 +1,59 @@
+ 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+ /** 
+ * EllipsoidListApp - uses EllipsoidList and Ellipsoid classes.
+ */
+public class EllipsoidListApp {
+
+ /**
+ * Reads file with triangle data, creates EllipsoidList, prints EllipsoidList,
+ * prints summary of EllipsoidList.
+ *
+ * @param args - is not used.
+ * @throws FileNotFoundException required by Scanner for File
+ */
+   public static void main(String[] args) throws FileNotFoundException {
+   
+   //Create a list 
+      ArrayList<Ellipsoid> myList = new ArrayList<Ellipsoid>();
+   
+   // Create a scanner object to get read filename
+      Scanner scan = new Scanner(System.in);
+      System.out.print("Enter file name: ");
+      String fileName = scan.nextLine();
+      
+      Scanner scanFile = new Scanner(new File(fileName));
+      String ellipsoidListName = scanFile.nextLine();
+     
+      
+   //Use while loop to read the lines
+      while (scanFile.hasNext()) {
+      
+      // add to the list
+         
+         String eName = scanFile.nextLine();
+         double a = scanFile.nextDouble();
+         double b = scanFile.nextDouble();
+         double c = scanFile.nextDouble();
+         
+         Ellipsoid t = new Ellipsoid(eName, a, b, c);
+         myList.add(t); 
+      }
+      scanFile.close();
+         
+      // Create EllipsoidList object
+      EllipsoidList myEllipsoidList = new EllipsoidList(ellipsoidListName, myList);
+         
+      // print to string
+      System.out.println(myEllipsoidList);
+         
+      // print summary
+      System.out.println(myEllipsoidList.summaryInfo());
+      
+   }
+}
+
